@@ -51,3 +51,15 @@ void Huffman::writeHeader(std::ofstream& outFile) {
         outFile.write(reinterpret_cast<const char*>(&val), sizeof(val));
     }
 }
+
+void Huffman::readHeader(std::ifstream& inFile) {
+    int mapSize;
+    inFile.read(reinterpret_cast<char*>(&mapSize), sizeof(mapSize));
+    for (int i = 0; i < mapSize; ++i) {
+        char key;
+        int val;
+        inFile.read(&key, sizeof(key));
+        inFile.read(reinterpret_cast<char*>(&val), sizeof(val));
+        freqMap[key] = val;
+    }
+}
