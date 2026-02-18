@@ -84,5 +84,25 @@ void Huffman::compress(const std::string& inputFile, const std::string& outputFi
     char buffer = 0;
     int bitCount = 0;
 
+    while (inFile.get(ch)) {
+        std::string code = huffmanCode[ch];
+        for (char bit : code) {
+            if (bit == '1') {
+                buffer |= (1 << (7 - bitCount));
+            }
+            bitCount++;
+            if (bitCount == 8) {
+                outFile.put(buffer);
+                buffer = 0;
+                bitCount = 0;
+            }
+        }
+    }
+    
+    if (bitCount > 0) {
+        outFile.put(buffer);
+    }
 
+    inFile.close();
+    outFile.close();
 }
