@@ -19,3 +19,24 @@ struct Compare {
         return l->freq > r->freq;
     }
 };
+
+class Huffman {
+private:
+    std::map<char, std::string> huffmanCode;
+    std::map<char, int> freqMap;
+    Node* root;
+
+    void generateCodes(Node* root, std::string str);
+    void deleteTree(Node* root);
+    void writeHeader(std::ofstream& outFile);
+    void readHeader(std::ifstream& inFile);
+    Node* buildTree(const std::map<char, int>& freq);
+
+public:
+    Huffman();
+    ~Huffman();
+    void compress(const std::string& inputFile, const std::string& outputFile);
+    void decompress(const std::string& inputFile, const std::string& outputFile);
+};
+
+#endif
