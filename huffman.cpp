@@ -42,3 +42,12 @@ Node* Huffman::buildTree(const std::map<char, int>& freq) {
 
     return pq.top();
 }
+
+void Huffman::writeHeader(std::ofstream& outFile) {
+    int mapSize = freqMap.size();
+    outFile.write(reinterpret_cast<char*>(&mapSize), sizeof(mapSize));
+    for (auto const& [key, val] : freqMap) {
+        outFile.write(&key, sizeof(key));
+        outFile.write(reinterpret_cast<const char*>(&val), sizeof(val));
+    }
+}
