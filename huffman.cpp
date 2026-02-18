@@ -32,3 +32,13 @@ Node* Huffman::buildTree(const std::map<char, int>& freq) {
     for (auto const& [key, val] : freq) {
         pq.push(new Node(key, val));
     }
+
+    while (pq.size() != 1) {
+        Node* left = pq.top(); pq.pop();
+        Node* right = pq.top(); pq.pop();
+        int sum = left->freq + right->freq;
+        pq.push(new Node('\0', sum, left, right));
+    }
+
+    return pq.top();
+}
