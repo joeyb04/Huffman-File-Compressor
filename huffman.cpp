@@ -16,3 +16,12 @@ void Huffman::deleteTree(Node* node) {
     deleteTree(node->right);
     delete node;
 }
+
+void Huffman::generateCodes(Node* root, std::string str) {
+    if (!root) return;
+    if (!root->left && !root->right) {
+        huffmanCode[root->ch] = str;
+    }
+    generateCodes(root->left, str + "0");
+    generateCodes(root->right, str + "1");
+}
