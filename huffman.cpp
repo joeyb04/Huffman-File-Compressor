@@ -25,3 +25,10 @@ void Huffman::generateCodes(Node* root, std::string str) {
     generateCodes(root->left, str + "0");
     generateCodes(root->right, str + "1");
 }
+
+Node* Huffman::buildTree(const std::map<char, int>& freq) {
+    std::priority_queue<Node*, std::vector<Node*>, Compare> pq;
+
+    for (auto const& [key, val] : freq) {
+        pq.push(new Node(key, val));
+    }
