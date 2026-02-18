@@ -9,3 +9,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Decompress: ./huffman -d <input_file> <output_file>\n";
         return 1;
     }
+
+    std::string mode = argv[1];
+    std::string inputFile = argv[2];
+    std::string outputFile = argv[3];
+
+    Huffman huff;
