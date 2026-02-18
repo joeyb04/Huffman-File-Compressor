@@ -15,3 +15,17 @@ int main(int argc, char* argv[]) {
     std::string outputFile = argv[3];
 
     Huffman huff;
+
+    if (mode == "-c") {
+        huff.compress(inputFile, outputFile);
+        std::cout << "Compressed " << inputFile << " to " << outputFile << "\n";
+    } else if (mode == "-d") {
+        huff.decompress(inputFile, outputFile);
+        std::cout << "Decompressed " << inputFile << " to " << outputFile << "\n";
+    } else {
+        std::cout << "Invalid mode. Use -c or -d.\n";
+        return 1;
+    }
+
+    return 0;
+}
